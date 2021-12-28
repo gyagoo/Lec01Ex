@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+@Configuration// 설정을 위한 class 임을 알려주는 annotation
 @MapperScan(basePackages="com.gyagoo.ex.*")  // interface(mapper)가 있는 패키지 경로
 public class DatabaseConfig {
 
