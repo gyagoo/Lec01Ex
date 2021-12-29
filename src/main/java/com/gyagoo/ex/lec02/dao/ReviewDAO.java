@@ -9,5 +9,12 @@ import com.gyagoo.ex.lec02.model.Review;
 public interface ReviewDAO {
 	
 	public Review selectReview(@Param("id") int id);
+	public int insertReview(
+			@Param("storeId") int storeId,
+			@Param("menu") String menu,
+			@Param("userName") String userName,
+			@Param("point") double point,
+			@Param("review") String review);
 	
+	public int insertReviewAsObject(Review review);
 }

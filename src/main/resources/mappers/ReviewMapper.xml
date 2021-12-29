@@ -19,4 +19,51 @@
  		WHERE
  			`id` = #{id}	<!-- @param 과 일치 -->
  	</select>
+ 	
+ 	<insert id="insertReview" parameterType="map">
+ 		INSERT INTO `new_review`
+ 		(	
+ 			`storeId`
+ 			,	`menu`
+ 			,	`userName`
+ 			,	`point`
+ 			,	`review`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		)
+ 		VALUES	<!-- Param annotation 파라미터와 일치 -->
+ 		(
+ 			#{storeId}
+ 			, #{menu}
+ 			, #{userName}
+ 			, #{point}
+ 			, #{review}
+ 			, now()
+ 			, now()
+ 		)
+ 	
+ 	</insert>
+ 	
+ 	<insert id="insertReviewAsObject" parameterType="com.gyagoo.ex.lec02.model.Review">
+ 		INSERT INTO `new_review`
+ 		(	
+ 			`storeId`
+ 			,	`menu`
+ 			,	`userName`
+ 			,	`point`
+ 			,	`review`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		)
+ 		VALUES	<!-- Review class 의 멤버 변수 이름 -->
+ 		(
+ 			#{storeId}
+ 			, #{menu}
+ 			, #{userName}
+ 			, #{point}
+ 			, #{review}
+ 			, now()
+ 			, now()
+ 		)
+ 	</insert>
  </mapper>
