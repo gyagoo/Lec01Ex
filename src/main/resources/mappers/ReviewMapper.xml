@@ -19,8 +19,7 @@
  		WHERE
  			`id` = #{id}	<!-- @param 과 일치 -->
  	</select>
- 
- <!-- INSERT -->	
+ 	
  	<insert id="insertReview" parameterType="map">
  		INSERT INTO `new_review`
  		(	
