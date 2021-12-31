@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.gyagoo.ex.lec04.dao.UserDAO">
+ 	<insert id="insertUser" parameterType="map">	<!-- 여러 형태의 파라미터를 전달받기 때문에 -->
+ 		INSERT INTO `user`
+ 		(
+ 			`name`
+ 			,	`yyyymmdd`
+ 			,	`introduce`
+ 			,	`hobby`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{name}
+ 			,	#{yyyymmdd}
+ 			,	#{introduce}
+ 			,	#{hobby}
+ 			,	now()
+ 			,	now() 			
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectUser" resultType="com.gyagoo.ex.lec04.model.User" parameterType="int">
+ 		SELECT
+ 			`id`
+ 			,	`name`
+ 			,	`yyyymmdd`
+ 			,	`introduce`
+ 			,	`hobby`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE 
+ 			`id` = #{id}
+ 	</select>
+ </mapper>
