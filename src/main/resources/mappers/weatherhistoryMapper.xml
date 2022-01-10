@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.gyagoo.ex.lec05.dao.WeatherhistoryDAO">
+ 
+ <!-- 4 -->
+ 	<select id="selectWeatherhistory" resultType="com.gyagoo.ex.lec05.model.Weather">
+ 		SELECT
+ 			`id`
+ 			,	`date`
+ 			,	`weather`
+ 			,	`temperatures`
+ 			,	`precipitation`
+ 			,	`microDust`
+ 			,	`windSpeed`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		FROM
+ 			`weatherhistory` 	
+ <!-- 다른 조건은 여기서 생각하고 필요한 파라미터를 넘길 것 -->	
+ 	</select>
+ 	
+ 	<insert id="insertWeather" parameterType="map">
+ 		INSERT INTO `weatherhistory`
+ 		(
+ 			`date`
+ 			,	`weather`
+ 			,	`temperatures`
+ 			,	`precipitation`
+ 			,	`microDust`
+ 			,	`windSpeed`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		)
+ 		VALUES
+ 		(	<!-- @Param -->
+ 			#{date}
+ 			#{weather}
+ 			#{temperatures}
+ 			#{precipitation}
+ 			#{microDust}
+ 			#{windSpeed}
+ 			,	now()
+ 			,	now()
+ 		)
+ 	</insert>
+<!-- by object -->	
+ 	<insert id="insertWeather" parameterType="com.gyagoo.ex.lec05.model.Weather">
+ 		INSERT INTO `weatherhistory`
+ 		(
+ 			`date`
+ 			,	`weather`
+ 			,	`temperatures`
+ 			,	`precipitation`
+ 			,	`microDust`
+ 			,	`windSpeed`
+ 			,	`createdAt`
+ 			,	`updatedAt`
+ 		)
+ 		VALUES
+ 		(	<!-- Weather -->
+ 			#{date}
+ 			#{weather}
+ 			#{temperatures}
+ 			#{precipitation}
+ 			#{microDust}
+ 			#{windSpeed}
+ 			,	now()
+ 			,	now()
+ 		)
+ 	</insert> 	
+ </mapper>
