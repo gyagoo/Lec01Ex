@@ -45,8 +45,10 @@
  			,	now()
  			,	now()
  		)
+ 		
  	</insert>
-<!-- by object -->	
+ <!--	
+ by object 	
  	<insert id="insertWeather" parameterType="com.gyagoo.ex.lec05.model.Weather">
  		INSERT INTO `weatherhistory`
  		(
@@ -60,7 +62,7 @@
  			,	`updatedAt`
  		)
  		VALUES
- 		(	<!-- Weather -->
+ 		(	 Weather 
  			#{date}
  			#{weather}
  			#{temperatures}
@@ -70,5 +72,6 @@
  			,	now()
  			,	now()
  		)
- 	</insert> 	
+ 	</insert>
+ -->	 	
  </mapper>
