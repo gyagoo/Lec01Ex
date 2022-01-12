@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1> 회원 정보 추가 </h1>
-	<form method="post" action="/lec06/ex01/add_user" id="joinForm">
+	<form method="post" action="/lec06/ex01/add_user" id="joinForm">	<button type="button" id="duplicate">중복확인</button>
 		<label>이름</label> <input type="text" name="name" id="nameInput"> <br>
 		<label>생년월일</label> <input type="text" name="yyyymmdd" id="yyyymmddInput"> <br>
 		<label>자기소개</label> 
@@ -19,11 +19,13 @@
 		<label>취미</label> <input type="text" name="hobby" id="hobbyInput"> <br>
 		
 		<!-- <button type="submit" value="추가" id="submitBtn">추가</button> -->
-		<button type="button" value="추가" id="addBtn"></button>
+		<button type="button" value="추가" id="addBtn">추가</button>
 	</form>
 
 	<script>
 		$(document).ready(function() {
+			
+			var isDuplicateName = true; // 디폴트: 중복O
 			/*
 			form의 실행을 중단시킨 것이 아니기 때문에 insert 됨 -> 공백 저장
 			submit action을 가로채야 한다 = click -> submit event, 주체는 form tag
@@ -43,10 +45,10 @@
 			이것은 form을 전혀 활용하지 않을 것을 의미
 			
 			submit 장점 = enter를 통해 event 실행 가능
+			submit은 form과 함께 써야 함 ! ! !
 			*/
 			$("#joinForm").on("submit", function() {
 				
-				alert("ㅇㅋ");
 				let name = $("#nameInput").val();
 				let yyyymmdd = $("#yyyymmddInput").val();
 				let introduce = $("#introduceInput").val();
@@ -138,6 +140,46 @@
 						alert("에러발생");
 					}
 				});
+			});
+			
+			
+			// ex02
+			$("#duplicate").on("click", function() {
+				let name = $("#nameInput").val();
+				
+				if(name == "") {
+					alert("이름을 입력해 주세요");
+					return;
+				}
+				
+				// 중복체크 유효성 검사
+				// 서로 다른 버튼 안에서 일어나는 이벤트
+				if(isDuplicateName)	 {
+					alert("중복된 이름입니다.");
+					return;
+				}
+				
+				$.ajax({
+					type:post,
+					url:"/lec06/ex02/duplicate_name",
+					data:{"name":name},
+					success : function(data) {// data 이름과 상관없이 알아서 데이터 저장
+						// ajax는 json 형태로 저장되는 값들을 key-value 형태로 갖다 쓸 수 있음
+						// (isDuplicate: "false")
+						if(date.isDuplicate == "true") {
+							alert("이름이 중복됩니다");
+							isDuplicate = true;
+						} else {
+							alert("사용 가능합니다.");
+							isDuplicate = false;	// 중복체크 해주는 함수
+						}
+					}, 
+					
+					error : function() {
+						alert("에러발생");
+					}
+				});
+				
 			});
 		});
 	</script>

@@ -1,5 +1,8 @@
 package com.gyagoo.ex.lec06;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,7 @@ public class User06Controller {
 	}
 	
 	@ResponseBody
-	@PostMapping("lec06/ex01/add_user")
+	@PostMapping("/lec06/ex01/add_user")
 	public String ex02(
 			@RequestParam("name") String name,
 			@RequestParam("yyyymmdd") String yyyymmdd,
@@ -42,5 +45,20 @@ public class User06Controller {
 		 	API 개념, API와 ajax 
 		  	controller를 여기에서 사용할 수 있다
 		 */
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/lec06/ex02/duplicate_name")
+	public Map<String, String> duplicateName(@RequestParam("name") String name) {
+		Map<String, String> result = new HashMap<>();
+		
+		if (userBO.isDuplicate(name) == true) {
+			result.put("isDuplicate", "true");
+		} else {
+			result.put("isDuplicate", "false");
+		}
+		
+		return result;
 	}
 }

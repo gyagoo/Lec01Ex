@@ -19,4 +19,15 @@ public class UserBO {
 		// id 기반 SELECT
 		return userDAO.selectUser(id);
 	}
+	
+	// lec06
+	public Boolean isDuplicate(String name) {
+		
+		int count = userDAO.selectCountName(name);
+		if (count == 0) {
+			return false;	// 중복 O
+		} else {
+			return true;	// 중복 X
+		}
+	}
 }

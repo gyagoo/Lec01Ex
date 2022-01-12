@@ -15,4 +15,10 @@ public interface UserDAO {
 			, @Param("hobby") String hobby);
 	
 	public User selectUser(@Param("id") int id);
+	
+	// lec06
+	public int selectCountName(@Param("name") String name);
+	/*
+	 	중복되는 이름이 '몇 개'인지? -> count
+	 */
 }

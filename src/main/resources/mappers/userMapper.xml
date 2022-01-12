@@ -38,4 +38,14 @@
  		WHERE 
  			`id` = #{id}
  	</select>
+ 	
+ 	<!-- lec06 -->
+ 	<select id="selectCountName" parameterType="String" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
  </mapper>
