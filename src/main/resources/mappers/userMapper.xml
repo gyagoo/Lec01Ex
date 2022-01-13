@@ -40,12 +40,12 @@
  	</select>
  	
  	<!-- lec06 -->
- 	<select id="selectCountName" parameterType="String" resultType="int">
+ 	<select id="selectCountName" parameterType="string" resultType="int">
  		SELECT
  			count(*)
  		FROM
  			`user`
  		WHERE
- 			`id` = #{id}
+ 			`name` = #{name}
  	</select>
  </mapper>

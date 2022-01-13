@@ -21,13 +21,13 @@ public class UserBO {
 	}
 	
 	// lec06
-	public Boolean isDuplicate(String name) {
+	public Boolean isDuplicateName(String name) {
 		
 		int count = userDAO.selectCountName(name);
 		if (count == 0) {
-			return false;	// 중복 O
+			return false;	// 중복 X
 		} else {
-			return true;	// 중복 X
+			return true;	// 중복 O
 		}
 	}
 }

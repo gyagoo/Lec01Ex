@@ -53,7 +53,7 @@ public class User06Controller {
 	public Map<String, String> duplicateName(@RequestParam("name") String name) {
 		Map<String, String> result = new HashMap<>();
 		
-		if (userBO.isDuplicate(name) == true) {
+		if (userBO.isDuplicateName(name) == true) {
 			result.put("isDuplicate", "true");
 		} else {
 			result.put("isDuplicate", "false");

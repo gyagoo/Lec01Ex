@@ -11,8 +11,8 @@
 </head>
 <body>
 	<h1> 회원 정보 추가 </h1>
-	<form method="post" action="/lec06/ex01/add_user" id="joinForm">	<button type="button" id="duplicate">중복확인</button>
-		<label>이름</label> <input type="text" name="name" id="nameInput"> <br>
+	<form method="post" action="/lec06/ex01/add_user" id="joinForm">	
+		<label>이름</label> <input type="text" name="name" id="nameInput"> <button type="button" id="duplicateBtn">중복확인</button> <br> 
 		<label>생년월일</label> <input type="text" name="yyyymmdd" id="yyyymmddInput"> <br>
 		<label>자기소개</label> 
 		<textarea rows="10" cols="50" name="introduce" id="introduceInput"></textarea> <br>
@@ -144,7 +144,7 @@
 			
 			
 			// ex02
-			$("#duplicate").on("click", function() {
+			$("#duplicateBtn").on("click", function() {
 				let name = $("#nameInput").val();
 				
 				if(name == "") {
@@ -154,24 +154,20 @@
 				
 				// 중복체크 유효성 검사
 				// 서로 다른 버튼 안에서 일어나는 이벤트
-				if(isDuplicateName)	 {
-					alert("중복된 이름입니다.");
-					return;
-				}
 				
 				$.ajax({
-					type:post,
+					type:"get",
 					url:"/lec06/ex02/duplicate_name",
 					data:{"name":name},
 					success : function(data) {// data 이름과 상관없이 알아서 데이터 저장
 						// ajax는 json 형태로 저장되는 값들을 key-value 형태로 갖다 쓸 수 있음
-						// (isDuplicate: "false")
-						if(date.isDuplicate == "true") {
+						// {isDuplicate: "false"}
+						if(data.isDuplicate == "true") {
 							alert("이름이 중복됩니다");
-							isDuplicate = true;
+							isDuplicateName = true;
 						} else {
 							alert("사용 가능합니다.");
-							isDuplicate = false;	// 중복체크 해주는 함수
+							isDuplicateName = false;	// 중복체크 해주는 함수
 						}
 					}, 
 					
